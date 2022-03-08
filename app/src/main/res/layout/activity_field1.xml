@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dasar"
+    tools:context=".Field1">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="415dp"
+        android:layout_height="150dp"
+        android:background="@drawable/square"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/text_atas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/ipb_farm"
+        android:textSize="20sp"
+        android:textColor="@color/putih"
+        android:fontFamily="@font/roboto_light"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/icon_atas"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/ic_launcher_round"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/lahan"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="@string/lahan_sawah_percontohan_4_0_ipb"
+        android:textColor="@color/putih"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/box_2"
+        android:layout_width="350dp"
+        android:layout_height="750dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/round_2"
+        android:backgroundTint="@color/putih"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"/>
+
+    <TextView
+        android:id="@+id/judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/field_1"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2"/>
+
+    <TextView
+        android:id="@+id/soil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="@string/soil_humidity"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2"
+        app:layout_constraintHorizontal_bias="0.25"/>
+
+    <TextView
+        android:id="@+id/air"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="@string/air_humidity"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2"
+        app:layout_constraintHorizontal_bias="0.75"/>
+
+    <TextView
+        android:id="@+id/soil_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="35.0"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2"
+        app:layout_constraintHorizontal_bias="0.3"/>
+
+    <TextView
+        android:id="@+id/air_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="3.0"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2"
+        app:layout_constraintHorizontal_bias="0.7"/>
+
+    <Button
+        android:id="@+id/klik_1"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:background="@drawable/border"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="320dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Temperatur"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_light"
+
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
