@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RealTime">
         <activity
+            android:name=".Field3"
+            android:exported="true" />
+        <activity
+            android:name=".Field2"
+            android:exported="true" />
+        <activity
             android:name=".Field1"
             android:exported="true" />
         <activity
