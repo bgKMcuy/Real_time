@@ -6,10 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import id.skripsi.kaem.realtime.databinding.Fragment1Binding
+import id.skripsi.kaem.realtime.helper.viewModelsFactory
+import id.skripsi.kaem.realtime.network.ApiClient
+import id.skripsi.kaem.realtime.network.ApiService
+import id.skripsi.kaem.realtime.viewmodel.SensorViewModel
 
 class Fragment1 : Fragment() {
     private var _binding: Fragment1Binding? = null
     private val binding get() = _binding!!
+
+//    private lateinit var sensorAdapter: SensorAdapter
+
+    private val apiService: ApiService by lazy { ApiClient.instance }
+    private val sensorViewModel: SensorViewModel by viewModelsFactory { SensorViewModel(apiService) }
+
+//    private val listContact = arrayListOf<Data>(
+//        Data(judul = "Anna", sub = "1234554"),
+//        Data(judul = "Brody", sub = "5432112"),
+//        Data(judul = "David", sub = "1234565"),
+//        Data(judul = "Jade", sub = "5432187"),
+//        Data(judul = "John", sub = "1234534"),
+//        Data(judul = "Pretty", sub = "5432123"),
+//        Data(judul = "Sam", sub = "1234515"),
+//        Data(judul = "Steve", sub = "6789021")
+//    )
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,83 +48,8 @@ class Fragment1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        temp()
-        pH()
-        eC()
-        nitro()
-        fosfor()
-        kalium()
-    }
-
-    private fun temp() {
-        binding.apply {
-            klikTemp.setOnClickListener {
-                if (clGambar1.visibility == View.GONE) {
-                    clGambar1.visibility = View.VISIBLE
-                } else {
-                    clGambar1.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    private fun pH() {
-        binding.apply {
-            klikPh.setOnClickListener {
-                if (clGambar2.visibility == View.GONE) {
-                    clGambar2.visibility = View.VISIBLE
-                } else {
-                    clGambar2.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    private fun eC() {
-        binding.apply {
-            klikEc.setOnClickListener {
-                if (clGambar3.visibility == View.GONE) {
-                    clGambar3.visibility = View.VISIBLE
-                } else {
-                    clGambar3.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    private fun nitro() {
-        binding.apply {
-            klikNatrium.setOnClickListener {
-                if (clGambar4.visibility == View.GONE) {
-                    clGambar4.visibility = View.VISIBLE
-                } else {
-                    clGambar4.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    private fun fosfor() {
-        binding.apply {
-            klikFosfor.setOnClickListener {
-                if (clGambar5.visibility == View.GONE) {
-                    clGambar5.visibility = View.VISIBLE
-                } else {
-                    clGambar5.visibility = View.GONE
-                }
-            }
-        }
-    }
-
-    private fun kalium() {
-        binding.apply {
-            klikKalium.setOnClickListener {
-                if (clGambar6.visibility == View.GONE) {
-                    clGambar6.visibility = View.VISIBLE
-                } else {
-                    clGambar6.visibility = View.GONE
-                }
-            }
-        }
+        sensorViewModel.getAllSensor()
+//        initRecyclerView()
+//        observeData()
     }
 }

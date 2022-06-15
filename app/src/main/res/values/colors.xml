@@ -10,4 +10,6 @@
     <color name="biru">#007BB4</color>
     <color name="biru_muda">#66B0D2</color>
     <color name="dasar">#E5E5E5</color>
+    <color name="dialog_btn">#A83FA6</color>
+    <color name="violet">#7f00ff</color>
 </resources>

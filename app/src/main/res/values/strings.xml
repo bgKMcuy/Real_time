@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Real Time</string>
     <string name="monitoring_field">Monitoring Field</string>
     <string name="kondisi_aktuator">Kondisi Aktuator</string>
     <string name="tertutup">Tertutup</string>

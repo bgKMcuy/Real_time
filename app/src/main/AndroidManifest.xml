@@ -2,22 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.skripsi.kaem.realtime">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="${appIcon}"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="${appIconRound}"
         android:supportsRtl="true"
         android:theme="@style/Theme.RealTime">
-        <activity
-            android:name=".Field3"
-            android:exported="true" />
-        <activity
-            android:name=".Field2"
-            android:exported="true" />
-        <activity
-            android:name=".Field1"
-            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
