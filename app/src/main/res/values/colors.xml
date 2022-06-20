@@ -12,4 +12,6 @@
     <color name="dasar">#E5E5E5</color>
     <color name="dialog_btn">#A83FA6</color>
     <color name="violet">#7f00ff</color>
+    <color name="btn_akt">#447F9B</color>
+    <color name="bg_akt">#7CD4FD</color>
 </resources>

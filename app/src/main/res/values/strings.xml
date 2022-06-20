@@ -3,12 +3,13 @@
     <string name="kondisi_aktuator">Kondisi Aktuator</string>
     <string name="tertutup">Tertutup</string>
     <string name="ipb_farm">IPB Farm</string>
-    <string name="lahan_sawah_percontohan_4_0_ipb">Lahan Sawah
-        Percontohan 4.0 IPB</string>
+    <string name="lahan_sawah_percontohan_4_0_ipb">Lahan Sawah Percontohan 4.0 IPB</string>
     <string name="field_1">Field 1</string>
     <string name="temperatur">temperatur</string>
     <string name="soil_humidity">Soil Humidity</string>
     <string name="air_humidity">Air Humidity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="field_2">Field 2</string>
+    <string name="field_3">Field 3</string>
 </resources>

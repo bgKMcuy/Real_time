@@ -33,11 +33,11 @@
 
     <ImageView
         android:id="@+id/icon_atas"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:background="@mipmap/ic_launcher_round"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:background="@mipmap/ic_ipb_foreground"
+        app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/field_1"
+        android:text="@string/field_3"
         android:textColor="@color/black"
         android:textSize="23sp"
         android:fontFamily="@font/roboto_bold"
@@ -81,72 +81,195 @@
         app:layout_constraintLeft_toLeftOf="@id/box_2"
         app:layout_constraintTop_toTopOf="@id/box_2"/>
 
-    <TextView
-        android:id="@+id/soil"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_atas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:text="@string/soil_humidity"
-        android:textSize="13sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="1dp"
+        app:cardBackgroundColor="@color/bg_akt"
         app:layout_constraintRight_toRightOf="@id/box_2"
         app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2"
-        app:layout_constraintHorizontal_bias="0.25"/>
+        app:layout_constraintTop_toBottomOf="@id/judul">
 
-    <TextView
-        android:id="@+id/air"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:text="@string/air_humidity"
-        android:textSize="13sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2"
-        app:layout_constraintHorizontal_bias="0.75"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/soil_val"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:text="35.0"
-        android:textSize="13sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2"
-        app:layout_constraintHorizontal_bias="0.3"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_box_1"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp">
 
-    <TextView
-        android:id="@+id/air_val"
-        android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_dist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ketinggian Air"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="@id/cl_box_1"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
+                    app:layout_constraintRight_toRightOf="@id/cl_box_1"/>
+
+                <TextView
+                    android:id="@+id/val_dist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="0 cm"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_dist"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
+                    app:layout_constraintRight_toRightOf="@id/cl_box_1"/>
+
+                <TextView
+                    android:id="@+id/tv_msg_dist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="Air Kering"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/val_dist"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
+                    app:layout_constraintRight_toRightOf="@id/cl_box_1"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_box_2"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:id="@+id/title_akt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pintu Aktuator"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="@id/cl_box_2"
+                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"/>
+
+                <TextView
+                    android:id="@+id/status_akt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="Tertutup"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/title_akt"
+                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"/>
+
+                <ImageButton
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/circle"
+                    android:src="@drawable/gear_3"
+                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
+                    app:layout_constraintTop_toBottomOf="@id/status_akt"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_rh"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:text="3.0"
-        android:textSize="13sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="2dp"
         app:layout_constraintRight_toRightOf="@id/box_2"
         app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2"
-        app:layout_constraintHorizontal_bias="0.7"/>
+        app:layout_constraintTop_toBottomOf="@id/cd_atas"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/klik_rh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/icon_rh"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/humidity_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_rh"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="17dp"
+                    android:text="Kelembaban Tanah"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon_rh" />
+
+                <TextView
+                    android:id="@+id/val_rh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:text="0.0"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_light"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_rh"
+                    app:layout_constraintHorizontal_bias="0.30"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_1"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="5dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="2dp"
         app:layout_constraintRight_toRightOf="@id/box_2"
         app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2"
+        app:layout_constraintTop_toBottomOf="@id/cd_rh"
         >
 
         <LinearLayout
@@ -164,18 +287,19 @@
                     android:id="@+id/icon_1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_margin="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@drawable/temperature_1"
+                    android:background="@drawable/temperature_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="17dp"
                     android:text="Temperatur"
                     android:textSize="13sp"
@@ -189,32 +313,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:text="33.0"
+                    android:text="0.0"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_1" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gambar_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="165dp"
-                    android:src="@drawable/contoh"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                    app:layout_constraintStart_toEndOf="@id/tv_1"
+                    app:layout_constraintHorizontal_bias="0.30"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -244,18 +350,19 @@
 
                 <ImageView
                     android:id="@+id/icon_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/ph_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:layout_marginTop="17dp"
@@ -271,33 +378,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="8.0"
+                    android:text="0.0"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.675"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintStart_toEndOf="@id/tv_2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gambar_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="165dp"
-                    android:src="@drawable/contoh"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -327,18 +415,19 @@
 
                 <ImageView
                     android:id="@+id/icon_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/lightning_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:layout_marginTop="17dp"
@@ -354,33 +443,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:text="11.931"
+                    android:text="0.0"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.63"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_3" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gambar_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="165dp"
-                    android:src="@drawable/contoh"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -410,18 +480,19 @@
 
                 <ImageView
                     android:id="@+id/icon_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/nitrogen_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:layout_marginTop="17dp"
@@ -437,11 +508,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:text="138"
+                    android:text="0"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.58"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_4" />
@@ -493,18 +564,19 @@
 
                 <ImageView
                     android:id="@+id/icon_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/phosphorus_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:layout_marginTop="17dp"
@@ -520,33 +592,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:text="116"
+                    android:text="0"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.59"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_5" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gambar_5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="165dp"
-                    android:src="@drawable/contoh"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -576,18 +629,19 @@
 
                 <ImageView
                     android:id="@+id/icon_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/potassium_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_6"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
                     android:layout_marginTop="17dp"
@@ -603,33 +657,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
-                    android:text="159"
+                    android:text="0"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.58"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_6" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gambar_6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_6"
-                    android:layout_width="match_parent"
-                    android:layout_height="165dp"
-                    android:src="@drawable/contoh"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

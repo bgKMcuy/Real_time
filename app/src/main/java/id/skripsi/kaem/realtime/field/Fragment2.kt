@@ -1,24 +1,37 @@
 package id.skripsi.kaem.realtime.field
 
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkBuilder
 import com.ekn.gruzer.gaugelibrary.ArcGauge
 import com.ekn.gruzer.gaugelibrary.Range
+import id.skripsi.kaem.realtime.MainActivity
 import id.skripsi.kaem.realtime.R
 import id.skripsi.kaem.realtime.databinding.Fragment2Binding
 import id.skripsi.kaem.realtime.helper.viewModelsFactory
 import id.skripsi.kaem.realtime.network.ApiClient
 import id.skripsi.kaem.realtime.network.ApiService
 import id.skripsi.kaem.realtime.viewmodel.SensorViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Fragment2 : Fragment() {
 
@@ -27,6 +40,9 @@ class Fragment2 : Fragment() {
 
     private val apiService: ApiService by lazy { ApiClient.instance }
     private val sensorViewModel: SensorViewModel by viewModelsFactory { SensorViewModel(apiService) }
+
+    private lateinit var timer: CountDownTimer
+    var time_in_millis = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +61,9 @@ class Fragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sensorViewModel.getAllSensor()
+        createTimer()
+        dist()
+        moist()
         temp()
         pH()
         eC()
@@ -53,13 +72,96 @@ class Fragment2 : Fragment() {
         kalium()
     }
 
+    private fun dist() {
+        sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
+            binding.apply {
+                val dist = it.distance
+                val tinggi = 21-dist
+                valDist.text = "$tinggi cm"
+
+                when (tinggi) {
+                    0 -> {
+                        tvMsgDist.setText("Air Kering")
+                    }
+                    in 1..2 -> {
+                        tvMsgDist.setText("Normal")
+                    }
+                    else -> {
+                        tvMsgDist.setText("Air Pasang")
+                        showNotif()
+                    }
+                }
+            }
+            timer.start()
+        }
+
+        sensorViewModel.dataError.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            timer.start()
+        }
+    }
+
+    private fun moist() {
+        sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
+            binding.apply {
+                val mois = it.moisture.toDouble()
+                valRh.text = "$mois %"
+
+                klikRh.setOnClickListener {
+                    val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
+
+                    val tvTitle = view.findViewById<TextView>(R.id.tv_title)
+                    val tvSub = view.findViewById<TextView>(R.id.tv_sub)
+                    val gauge = view.findViewById<ArcGauge>(R.id.gauge)
+                    val notice = view.findViewById<TextView>(R.id.tv_notice)
+                    val close = view.findViewById<Button>(R.id.btn_close)
+
+                    tvTitle.setText("Moisture")
+                    tvSub.setText("Nilai Kelembaban Tanah")
+                    val normal = Range()
+                    normal.color = Color.YELLOW
+                    normal.from = 0.0
+                    normal.to = 35.0
+                    gauge.addRange(normal)
+
+                    val panas = Range()
+                    panas.color = Color.RED
+                    panas.from = 36.0
+                    panas.to = 100.0
+                    gauge.addRange(panas)
+
+                    gauge.minValue = 0.0
+                    gauge.maxValue = 100.0
+                    gauge.value = mois
+
+                    notice.isGone = true
+
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setView(view)
+                    val dialog = builder.create()
+                    close.setOnClickListener {
+                        Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                    dialog.show()
+                }
+            }
+            timer.start()
+        }
+
+        sensorViewModel.dataError.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            timer.start()
+        }
+    }
+
     private fun temp() {
         sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
             binding.apply {
-                var suhu = it.suhu.toInt()
-                val1.text = it.suhu.toString()
+                val suhu = it.suhu.toInt().toDouble()
+                val1.text = "$suhu ℃"
 
-                klikPh.setOnClickListener {
+                klikTemp.setOnClickListener {
                     val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
 
                     val tvTitle = view.findViewById<TextView>(R.id.tv_title)
@@ -84,7 +186,7 @@ class Fragment2 : Fragment() {
 
                     gauge.minValue = 0.0
                     gauge.maxValue = 100.0
-                    gauge.value = suhu.toDouble()
+                    gauge.value = suhu
 
                     if (suhu > 35) {
                         notice.setText("Suhu lingkungan terlalu Panas!")
@@ -103,17 +205,19 @@ class Fragment2 : Fragment() {
                     dialog.show()
                 }
             }
+            timer.start()
         }
 
         sensorViewModel.dataError.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            timer.start()
         }
     }
 
     private fun pH() {
         sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
             binding.apply {
-                var pH = it.pH
+                val pH = it.pH
                 val2.text = it.pH.toString()
 
                 klikPh.setOnClickListener {
@@ -170,18 +274,20 @@ class Fragment2 : Fragment() {
                     dialog.show()
                 }
             }
+            timer.start()
         }
 
         sensorViewModel.dataError.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            timer.start()
         }
     }
 
     private fun eC() {
         sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
             binding.apply {
-                var ec = it.eC
-                val3.text = it.eC.toString()
+                val ec = it.eC
+                val3.text = "$ec µS/cm"
 
                 klikEc.setOnClickListener {
                     val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
@@ -204,6 +310,8 @@ class Fragment2 : Fragment() {
                     gauge.maxValue = 1000.0
                     gauge.value = ec.toDouble()
 
+                    notice.isGone = true
+
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setView(view)
                     val dialog = builder.create()
@@ -214,9 +322,11 @@ class Fragment2 : Fragment() {
                     dialog.show()
                 }
             }
+            timer.start()
         }
 
         sensorViewModel.dataError.observe(viewLifecycleOwner) {
+            timer.start()
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
@@ -224,8 +334,8 @@ class Fragment2 : Fragment() {
     private fun nitro() {
         sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
             binding.apply {
-                var nitro = it.nitrogen
-                val4.text = it.nitrogen.toString()
+                val nitro = it.nitrogen
+                val4.text = "$nitro mg/Kg"
 
                 klikNatrium.setOnClickListener {
                     val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
@@ -248,6 +358,8 @@ class Fragment2 : Fragment() {
                     gauge.maxValue = 1000.0
                     gauge.value = nitro.toDouble()
 
+                    notice.isGone = true
+
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setView(view)
                     val dialog = builder.create()
@@ -258,9 +370,11 @@ class Fragment2 : Fragment() {
                     dialog.show()
                 }
             }
+            timer.start()
         }
 
         sensorViewModel.dataError.observe(viewLifecycleOwner) {
+            timer.start()
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
@@ -268,8 +382,8 @@ class Fragment2 : Fragment() {
     private fun fosfor() {
         sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
             binding.apply {
-                var fosfor = it.phospor
-                val5.text = it.phospor.toString()
+                val fosfor = it.phospor
+                val5.text = "$fosfor mg/Kg"
 
                 klikFosfor.setOnClickListener {
                     val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
@@ -292,6 +406,8 @@ class Fragment2 : Fragment() {
                     gauge.maxValue = 1000.0
                     gauge.value = fosfor.toDouble()
 
+                    notice.isGone = true
+
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setView(view)
                     val dialog = builder.create()
@@ -302,18 +418,20 @@ class Fragment2 : Fragment() {
                     dialog.show()
                 }
             }
+            timer.start()
         }
 
         sensorViewModel.dataError.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            timer.start()
         }
     }
 
     private fun kalium() {
         sensorViewModel.dataSuccess.observe(viewLifecycleOwner) {
             binding.apply {
-                var kal = it.kalium
-                val6.text = it.kalium.toString()
+                val kal = it.kalium
+                val6.text = "$kal mg/Kg"
 
                 klikKalium.setOnClickListener {
                     val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
@@ -336,6 +454,8 @@ class Fragment2 : Fragment() {
                     gauge.maxValue = 1000.0
                     gauge.value = kal.toDouble()
 
+                    notice.isGone = true
+
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setView(view)
                     val dialog = builder.create()
@@ -346,10 +466,72 @@ class Fragment2 : Fragment() {
                     dialog.show()
                 }
             }
+            timer.start()
         }
 
         sensorViewModel.dataError.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            timer.start()
         }
+    }
+
+    private fun createTimer() {
+        timer = object : CountDownTimer(5000, 10) {
+            override fun onTick(p0: Long) {
+                time_in_millis = p0/1000
+            }
+
+            override fun onFinish() {
+                sensorViewModel.getAllSensor()
+            }
+        }
+    }
+
+    private fun showNotif() {
+        createNotifChannel()
+
+        val date = Date()
+        val notifId = SimpleDateFormat("ddHHmmss", Locale.US).format(date).toInt()
+
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        //if you want to pass data in notif and get in required activity
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pedIntent = NavDeepLinkBuilder(requireContext())
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.fragment2)
+//            .setArguments(bundleOf())
+            .createPendingIntent()
+
+        //create notif builder
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+        builder.setSmallIcon(R.mipmap.ic_ipb)
+        builder.setContentTitle("Peringatan!!!")
+        builder.setContentText("Air Pasang, Silahkan tutup Pintu Aktuator Field 2.")
+        builder.priority = NotificationCompat.PRIORITY_DEFAULT
+        //cancel notif on click
+        builder.setAutoCancel(true)
+        //add click intent
+        builder.setContentIntent(pedIntent)
+
+        //create notif manager
+        val notifManagerCompat = NotificationManagerCompat.from(requireContext())
+        notifManagerCompat.notify(notifId, builder.build())
+    }
+
+    private fun createNotifChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notif Fragment 2"
+            val description = "Ini Notif Fragment 2"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val notificationChannel = NotificationChannel(CHANNEL_ID, name, importance)
+            notificationChannel.description = description
+
+            val notifManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notifManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
+    companion object {
+        private const val CHANNEL_ID = "channel2"
     }
 }

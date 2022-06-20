@@ -43,8 +43,8 @@ android {
             versionCode 1
             versionName "1.0"
             manifestPlaceholders = [
-                    appIcon         : "@mipmap/ic_launcher",
-                    appIconRound    : "@mipmap/ic_launcher_round"
+                    appIcon         : "@mipmap/ic_ipb_foreground",
+                    appIconRound    : "@mipmap/ic_ipb_foreground"
             ]
             resValue("string", "app_name", appNameProd)
 
@@ -95,6 +95,7 @@ android {
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    def core_version = "1.6.0"
     def nav_versi = "2.4.1"
 
     implementation 'androidx.core:core-ktx:1.8.0'
@@ -133,4 +134,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    //notif
+    implementation "androidx.core:core-ktx:$core_version"
 }

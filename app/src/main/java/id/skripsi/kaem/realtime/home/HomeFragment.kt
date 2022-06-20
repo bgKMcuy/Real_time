@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
 
     private fun field1() {
         binding.apply {
-            tombol1.setOnClickListener {
+            cdBtn1.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFragment1())
             }
         }
@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
 
     private fun field2() {
         binding.apply {
-            tombol2.setOnClickListener {
+            cdBtn2.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFragment2())
             }
         }
@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
 
     private fun field3() {
         binding.apply {
-            tombol3.setOnClickListener {
+            cdBtn3.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFragment3())
             }
         }
