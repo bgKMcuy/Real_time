@@ -4,8 +4,6 @@ package id.skripsi.kaem.realtime.model
 import com.google.gson.annotations.SerializedName
 
 data class Sensor(
-    @SerializedName("Distance")
-    val distance: Int,
     @SerializedName("EC")
     val eC: Int,
     @SerializedName("Kalium")
@@ -17,7 +15,5 @@ data class Sensor(
     @SerializedName("pH")
     val pH: Int,
     @SerializedName("Phospor")
-    val phospor: Int,
-    @SerializedName("Suhu")
-    val suhu: Double
+    val phospor: Int
 )
