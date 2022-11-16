@@ -32,8 +32,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         field1()
-//        field2()
-//        field3()
+        field2()
+        field3()
     }
 
     private fun field1() {

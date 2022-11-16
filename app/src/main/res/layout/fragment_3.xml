@@ -11,25 +11,25 @@
     <TextView
         android:id="@+id/header"
         android:layout_width="415dp"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:background="@drawable/square"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_atas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/ipb_farm"
-        android:textSize="20sp"
-        android:textColor="@color/putih"
         android:fontFamily="@font/roboto_light"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/ipb_farm"
+        android:textColor="@color/putih"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/icon_atas"
@@ -40,64 +40,64 @@
         app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lahan"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/lahan_sawah_percontohan_4_0_ipb"
+        android:textAlignment="center"
         android:textColor="@color/putih"
         android:textSize="23sp"
-        android:textAlignment="center"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/box_2"
         android:layout_width="350dp"
-        android:layout_height="750dp"
+        android:layout_height="620dp"
         android:layout_marginTop="35dp"
         android:background="@drawable/round_2"
         android:backgroundTint="@color/putih"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
 
     <TextView
         android:id="@+id/judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="@string/field_3"
         android:textColor="@color/black"
         android:textSize="23sp"
-        android:fontFamily="@font/roboto_bold"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintRight_toRightOf="@id/box_2"
         app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2"/>
+        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:layout_constraintTop_toTopOf="@id/box_2" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_atas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="1dp"
         app:cardBackgroundColor="@color/bg_akt"
-        app:layout_constraintRight_toRightOf="@id/box_2"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="3dp"
         app:layout_constraintLeft_toLeftOf="@id/box_2"
+        app:layout_constraintRight_toRightOf="@id/box_2"
         app:layout_constraintTop_toBottomOf="@id/judul">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_box_1"
@@ -110,42 +110,42 @@
                     android:id="@+id/tv_dist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ketinggian Air"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="Ketinggian Air"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toTopOf="@id/cl_box_1"
                     app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_1"/>
+                    app:layout_constraintRight_toRightOf="@id/cl_box_1"
+                    app:layout_constraintTop_toTopOf="@id/cl_box_1" />
 
                 <TextView
                     android:id="@+id/val_dist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:text="0 cm"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="0 cm"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/tv_dist"
                     app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_1"/>
+                    app:layout_constraintRight_toRightOf="@id/cl_box_1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_dist" />
 
                 <TextView
                     android:id="@+id/tv_msg_dist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:text="Air Kering"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="Air Kering"
+                    android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/val_dist"
                     app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_1"/>
+                    app:layout_constraintRight_toRightOf="@id/cl_box_1"
+                    app:layout_constraintTop_toBottomOf="@id/val_dist" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -159,38 +159,38 @@
                     android:id="@+id/title_akt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pintu Aktuator"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="Pintu Aktuator"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toTopOf="@id/cl_box_2"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
                     app:layout_constraintRight_toRightOf="@id/cl_box_2"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"/>
+                    app:layout_constraintTop_toTopOf="@id/cl_box_2" />
 
                 <TextView
                     android:id="@+id/status_akt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="Tertutup"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="Tertutup"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="normal"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/title_akt"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"/>
-
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/circle"
-                    android:src="@drawable/gear_3"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
                     app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
-                    app:layout_constraintTop_toBottomOf="@id/status_akt"/>
+                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
+                    app:layout_constraintTop_toBottomOf="@id/title_akt" />
+
+                <!--                <ImageButton-->
+                <!--                    android:layout_width="70dp"-->
+                <!--                    android:layout_height="70dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:background="@drawable/circle"-->
+                <!--                    android:src="@drawable/gear_3"-->
+                <!--                    app:layout_constraintRight_toRightOf="@id/cl_box_2"-->
+                <!--                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/status_akt"/>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -347,6 +347,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:visibility="visible">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/klik_ph"
+                    app:layout_constraintEnd_toEndOf="@id/klik_ph"
+                    app:layout_constraintStart_toStartOf="@id/klik_ph"
+                    app:layout_constraintTop_toTopOf="@id/klik_ph" />
 
                 <ImageView
                     android:id="@+id/icon_2"
@@ -668,5 +678,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

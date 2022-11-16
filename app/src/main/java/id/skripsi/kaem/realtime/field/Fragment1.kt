@@ -52,47 +52,62 @@ class Fragment1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        sensorViewModel.getAllData()
+        load()
         createTimer()
         fetchData()
+    }
+
+    private fun load() {
+        sensorViewModel.getAllData().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    binding.progressBar.isGone = true
+                }
+                Status.ERROR -> {
+                    binding.progressBar.isGone = true
+                }
+                else -> {
+                    binding.progressBar.isVisible = true
+                }
+            }
+        }
     }
 
     private fun fetchData() {
         sensorViewModel.getAllData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    binding.progressBar.isGone = true
-
-//                    val dist = it.distance
-//                    val tinggi = 22 - dist
-                    val mois = it.data!!.moisture.toInt().toDouble()
-//                    val suhu = it.suhu.toInt().toDouble()
+                    val akt = it.data!!.output.toInt()
+                    val dist = it.data.distance.toInt()
+                    val tinggi = 17 - (dist*-1)
+                    val mois = it.data.moisture.toInt().toDouble()
+                    val suhu = it.data.suhu.toInt().toDouble()
                     val pH = it.data.pH.toInt().toDouble()
                     val ec = it.data.eC
                     val nitro = it.data.nitrogen
                     val fosfor = it.data.phospor
                     val kal = it.data.kalium
 
-//                    dist(tinggi)
+                    aktOut(akt)
+                    dist(tinggi)
                     mois(mois)
-//                    temp(suhu)
+                    temp(suhu)
                     pH(pH)
                     eC(ec)
                     nitro(nitro)
                     fosfor(fosfor)
                     kalium(kal)
+
+                    timer.start()
                 }
                 Status.ERROR -> {
-                    binding.progressBar.isGone = true
-
                     it.message.let {
                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                     }
+                    timer.start()
                 }
-                else -> {
-                    binding.progressBar.isVisible = true
-                }
+                else -> {}
             }
-            timer.start()
         }
     }
 
@@ -111,6 +126,23 @@ class Fragment1 : Fragment() {
             }
             else -> {
                 tvMsgDist.setText("Air Pasang")
+//                showNotif()
+            }
+        }
+    }
+
+    private fun aktOut(nilai: Int) {
+        val out = view!!.findViewById<TextView>(R.id.status_akt)
+
+        when (nilai) {
+            in 0..35 -> {
+                out.setText("Tertutup")
+            }
+            in 36..75 -> {
+                out.setText("Terbuka sebagian")
+            }
+            else -> {
+                out.setText("Terbuka penuh")
 //                showNotif()
             }
         }
@@ -162,7 +194,7 @@ class Fragment1 : Fragment() {
         }
     }
 
-    private fun temp(nilai: Int) {
+    private fun temp(nilai: Double) {
         val mois = view!!.findViewById<TextView>(R.id.val_1)
         val klikTemp = view!!.findViewById<ConstraintLayout>(R.id.klik_temp)
 
@@ -437,12 +469,11 @@ class Fragment1 : Fragment() {
     private fun createTimer() {
         timer = object : CountDownTimer(5000, 1000) {
             override fun onTick(p0: Long) {
-                time_in_millis = p0/5000
+                time_in_millis = p0/1000
             }
 
             override fun onFinish() {
-                sensorViewModel.getAllData()
-//                Toast.makeText(requireContext(), "done!", Toast.LENGTH_SHORT).show()
+                fetchData()
             }
         }
     }
@@ -491,7 +522,7 @@ class Fragment1 : Fragment() {
 //        }
 //    }
 
-    companion object {
-        private const val CHANNEL_ID = "channel1"
-    }
+//    companion object {
+//        private const val CHANNEL_ID = "channel1"
+//    }
 }
