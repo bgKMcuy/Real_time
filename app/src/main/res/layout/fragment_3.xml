@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dasar"
+    android:background="@color/background"
     tools:context=".field.Fragment3">
 
     <TextView
         android:id="@+id/header"
-        android:layout_width="415dp"
-        android:layout_height="140dp"
+        android:layout_width="535dp"
+        android:layout_height="300dp"
         android:background="@drawable/square"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,661 +21,653 @@
         android:id="@+id/text_atas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_light"
+        android:layout_marginTop="16dp"
         android:text="@string/ipb_farm"
-        android:textColor="@color/putih"
-        android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.59"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30sp"
+        android:textColor="@color/text"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/icon_atas"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="3dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
         android:background="@mipmap/ic_ipb_foreground"
-        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/lahan"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/lahan_sawah_percontohan_4_0_ipb"
         android:textAlignment="center"
-        android:textColor="@color/putih"
-        android:textSize="23sp"
+        android:textColor="@color/text"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:id="@+id/box_2"
-        android:layout_width="350dp"
-        android:layout_height="620dp"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/round_2"
-        android:backgroundTint="@color/putih"
+        android:layout_width="450dp"
+        android:layout_height="720dp"
+        android:layout_marginTop="230dp"
+        app:cardCornerRadius="23dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="@color/cardview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header" />
-
-    <TextView
-        android:id="@+id/judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/field_3"
-        android:textColor="@color/black"
-        android:textSize="23sp"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintTop_toTopOf="@id/box_2" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_atas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/bg_akt"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="3dp"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/judul">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="710dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/field_3"
+                android:textColor="@color/text_second"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_atas"
+                android:layout_width="400dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/cardview_second"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="9dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/judul">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_box_1"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/tv_dist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Ketinggian Air"
+                            android:textColor="@color/text_second"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
+                            app:layout_constraintRight_toRightOf="@id/cl_box_1"
+                            app:layout_constraintTop_toTopOf="@id/cl_box_1" />
+
+                        <TextView
+                            android:id="@+id/val_dist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="0 cm"
+                            android:textColor="@color/text_second"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
+                            app:layout_constraintRight_toRightOf="@id/cl_box_1"
+                            app:layout_constraintTop_toBottomOf="@id/tv_dist" />
+
+                        <TextView
+                            android:id="@+id/tv_msg_dist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="Air Kering"
+                            android:textColor="@color/text_second"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
+                            app:layout_constraintRight_toRightOf="@id/cl_box_1"
+                            app:layout_constraintTop_toBottomOf="@id/val_dist" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_box_2"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/title_akt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Pintu Aktuator"
+                            android:textColor="@color/text_second"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
+                            app:layout_constraintRight_toRightOf="@id/cl_box_2"
+                            app:layout_constraintTop_toTopOf="@id/cl_box_2" />
+
+                        <TextView
+                            android:id="@+id/status_akt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="Tertutup"
+                            android:textColor="@color/text_second"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
+                            app:layout_constraintRight_toRightOf="@id/cl_box_2"
+                            app:layout_constraintTop_toBottomOf="@id/title_akt" />
+
+                        <!--                <ImageButton-->
+                        <!--                    android:layout_width="70dp"-->
+                        <!--                    android:layout_height="70dp"-->
+                        <!--                    android:layout_marginTop="8dp"-->
+                        <!--                    android:background="@drawable/circle"-->
+                        <!--                    android:src="@drawable/gear_3"-->
+                        <!--                    app:layout_constraintRight_toRightOf="@id/cl_box_2"-->
+                        <!--                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"-->
+                        <!--                    app:layout_constraintTop_toBottomOf="@id/status_akt"/>-->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_rh"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_atas">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_rh"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_rh"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:background="@drawable/humidity_1"
+                            android:backgroundTint="@color/text_second"
+                            android:clickable="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_rh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Kelembaban Tanah"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_rh"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_rh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0.0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_rh"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_1"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_rh">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_temp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:background="@drawable/temperature_2"
+                            android:backgroundTint="@color/text_second"
+                            android:clickable="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_1"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Temperatur"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0.0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_2"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_ph"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:clickable="true"
+                            android:background="@drawable/ph_2"
+                            android:backgroundTint="@color/text_second"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_2"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="pH"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0.0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_3"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_ec"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:clickable="true"
+                            android:background="@drawable/lightning_2"
+                            android:backgroundTint="@color/text_second"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_3"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="EC"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_3"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0.0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_3"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_4"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_natrium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:clickable="true"
+                            android:background="@drawable/nitrogen_2"
+                            android:backgroundTint="@color/text_second"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_4"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Nitrogen"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_5"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_4">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_fosfor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_5"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:clickable="true"
+                            android:background="@drawable/phosphorus_2"
+                            android:backgroundTint="@color/text_second"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_5"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Fosfor"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_5"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_5"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cd_6"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/cardview_third"
+                app:layout_constraintLeft_toLeftOf="@id/box_2"
+                app:layout_constraintRight_toRightOf="@id/box_2"
+                app:layout_constraintTop_toBottomOf="@id/cd_5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/klik_kalium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/icon_6"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="20dp"
+                            android:clickable="true"
+                            android:background="@drawable/potassium_2"
+                            android:backgroundTint="@color/text_second"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_6"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Kalium"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@id/icon_6"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/val_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="0"
+                            android:textColor="@color/text_second"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.65"
+                            app:layout_constraintStart_toEndOf="@id/tv_6"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_box_1"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:id="@+id/tv_dist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Ketinggian Air"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_1"
-                    app:layout_constraintTop_toTopOf="@id/cl_box_1" />
-
-                <TextView
-                    android:id="@+id/val_dist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="0 cm"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_1"
-                    app:layout_constraintTop_toBottomOf="@id/tv_dist" />
-
-                <TextView
-                    android:id="@+id/tv_msg_dist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Air Kering"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_1"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_1"
-                    app:layout_constraintTop_toBottomOf="@id/val_dist" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_box_2"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:id="@+id/title_akt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Pintu Aktuator"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
-                    app:layout_constraintTop_toTopOf="@id/cl_box_2" />
-
-                <TextView
-                    android:id="@+id/status_akt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Tertutup"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="normal"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"
-                    app:layout_constraintRight_toRightOf="@id/cl_box_2"
-                    app:layout_constraintTop_toBottomOf="@id/title_akt" />
-
-                <!--                <ImageButton-->
-                <!--                    android:layout_width="70dp"-->
-                <!--                    android:layout_height="70dp"-->
-                <!--                    android:layout_marginTop="8dp"-->
-                <!--                    android:background="@drawable/circle"-->
-                <!--                    android:src="@drawable/gear_3"-->
-                <!--                    app:layout_constraintRight_toRightOf="@id/cl_box_2"-->
-                <!--                    app:layout_constraintLeft_toLeftOf="@id/cl_box_2"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@id/status_akt"/>-->
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_rh"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_atas"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_rh"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/icon_rh"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/humidity_1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_rh"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="17dp"
-                    android:text="Kelembaban Tanah"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_rh" />
-
-                <TextView
-                    android:id="@+id/val_rh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:text="0.0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_rh"
-                    app:layout_constraintHorizontal_bias="0.30"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_1"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_rh"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_temp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/icon_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/temperature_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_1"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="17dp"
-                    android:text="Temperatur"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_1" />
-
-                <TextView
-                    android:id="@+id/val_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:text="0.0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_1"
-                    app:layout_constraintHorizontal_bias="0.30"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_2"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_1"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_ph"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="@id/klik_ph"
-                    app:layout_constraintEnd_toEndOf="@id/klik_ph"
-                    app:layout_constraintStart_toStartOf="@id/klik_ph"
-                    app:layout_constraintTop_toTopOf="@id/klik_ph" />
-
-                <ImageView
-                    android:id="@+id/icon_2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/ph_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_2"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="17dp"
-                    android:text="pH"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_2" />
-
-                <TextView
-                    android:id="@+id/val_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="0.0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintStart_toEndOf="@id/tv_2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_3"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_2"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_ec"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/icon_3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/lightning_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_3"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="17dp"
-                    android:text="EC"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_3" />
-
-                <TextView
-                    android:id="@+id/val_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:text="0.0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_3" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_4"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_3"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_natrium"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/icon_4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/nitrogen_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_4"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="17dp"
-                    android:text="Natrium"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_4" />
-
-                <TextView
-                    android:id="@+id/val_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:text="0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_4" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_gambar_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="165dp"
-                    android:src="@drawable/contoh"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_5"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_4"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_fosfor"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/icon_5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/phosphorus_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_5"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="17dp"
-                    android:text="Fosfor"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_5" />
-
-                <TextView
-                    android:id="@+id/val_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:text="0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_5" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cd_6"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
-        app:layout_constraintRight_toRightOf="@id/box_2"
-        app:layout_constraintLeft_toLeftOf="@id/box_2"
-        app:layout_constraintTop_toBottomOf="@id/cd_5"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/klik_kalium"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/icon_6"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/potassium_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_6"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="17dp"
-                    android:text="Kalium"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_6" />
-
-                <TextView
-                    android:id="@+id/val_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:text="0"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_light"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_6" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/box_2"
+            app:layout_constraintEnd_toEndOf="@id/box_2"
+            app:layout_constraintStart_toStartOf="@id/box_2"
+            app:layout_constraintTop_toTopOf="@id/box_2" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

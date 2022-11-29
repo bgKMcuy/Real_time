@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#0E1D44</color>
+    <color name="secondary">#16264A</color>
+    <color name="background">#111828</color>
+    <color name="cardview">#202938</color>
+    <color name="cardview_second">#646E87</color>
+    <color name="cardview_third">#2C3646</color>
+    <color name="text">#FFFFFF</color>
+    <color name="text_second">#FFFFFF</color>
+</resources>

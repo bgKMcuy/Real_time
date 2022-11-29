@@ -4,6 +4,8 @@ package id.skripsi.kaem.realtime.model
 import com.google.gson.annotations.SerializedName
 
 data class ResponseSensor(
+    @SerializedName("C_ID")
+    val cID: Int,
     @SerializedName("Distance")
     val distance: Double,
     @SerializedName("EC")

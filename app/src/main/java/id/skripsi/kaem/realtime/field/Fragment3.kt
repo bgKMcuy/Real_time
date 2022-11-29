@@ -1,23 +1,16 @@
 package id.skripsi.kaem.realtime.field
 
-import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.ekn.gruzer.gaugelibrary.ArcGauge
-import com.ekn.gruzer.gaugelibrary.Range
 import dagger.hilt.android.AndroidEntryPoint
 import id.skripsi.kaem.realtime.R
 import id.skripsi.kaem.realtime.databinding.Fragment3Binding
@@ -101,9 +94,30 @@ class Fragment3 : Fragment() {
                 }
                 Status.ERROR -> {
                     it.message.let {
+                        //Default nilai jika data gagal diambil dari server
+                        val akt = 0
+                        val tinggi = 0
+                        val mois = 0.0
+                        val suhu = 0.0
+                        val pH = 0.0
+                        val ec = 0
+                        val nitro = 0
+                        val fosfor = 0
+                        val kal = 0
+
+                        aktOut(akt)
+                        dist(tinggi)
+                        mois(mois)
+                        temp(suhu)
+                        pH(pH)
+                        eC(ec)
+                        nitro(nitro)
+                        fosfor(fosfor)
+                        kalium(kal)
+
                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                     }
-                    timer.start()
+                    timer.cancel()
                 }
                 else -> {}
             }
@@ -148,320 +162,72 @@ class Fragment3 : Fragment() {
     }
 
     private fun mois(nilai: Double) {
-        val mois = view!!.findViewById<TextView>(R.id.val_rh)
-        val klikrh = view!!.findViewById<ConstraintLayout>(R.id.klik_rh)
-
-        mois.text = "$nilai %"
-
-        klikrh.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("Moisture")
-            tvSub.setText("Nilai Kelembaban Tanah")
-            val normal = Range()
-            normal.color = Color.YELLOW
-            normal.from = 0.0
-            normal.to = 35.0
-            gauge.addRange(normal)
-
-            val panas = Range()
-            panas.color = Color.RED
-            panas.from = 36.0
-            panas.to = 100.0
-            gauge.addRange(panas)
-
-            gauge.minValue = 0.0
-            gauge.maxValue = 100.0
-            gauge.value = nilai
-
-            notice.isGone = true
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
+        binding.apply {
+            valRh.text = "$nilai %"
+            cdRh.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai.toInt(), "Moisture", "Nilai Kelembaban Tanah", "")
+                dialogFragment.show(childFragmentManager, "Moisture")
             }
-            dialog.show()
         }
     }
 
     private fun temp(nilai: Double) {
-        val mois = view!!.findViewById<TextView>(R.id.val_1)
-        val klikTemp = view!!.findViewById<ConstraintLayout>(R.id.klik_temp)
-
-        mois.text = "$nilai ℃"
-
-        klikTemp.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("Temperatur")
-            tvSub.setText("Nilai suhu lingkungan")
-            val normal = Range()
-            normal.color = Color.YELLOW
-            normal.from = 0.0
-            normal.to = 35.0
-            gauge.addRange(normal)
-
-            val panas = Range()
-            panas.color = Color.RED
-            panas.from = 36.0
-            panas.to = 100.0
-            gauge.addRange(panas)
-
-            gauge.minValue = 0.0
-            gauge.maxValue = 100.0
-            gauge.value = nilai.toDouble()
-
-            if (nilai > 35) {
-                notice.setText("Suhu lingkungan terlalu Panas!")
-                notice.setTextColor(Color.RED)
-            } else {
-                notice.setText("Suhu lingkungan Normal")
+        binding.apply {
+            val1.text = "$nilai ℃"
+            cd1.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai.toInt(), "Temperatur", "Nilai suhu lingkungan", "Temp")
+                dialogFragment.show(childFragmentManager, "Temperature")
             }
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-            dialog.show()
         }
     }
 
     private fun pH(nilai: Double) {
-        val pH = view!!.findViewById<TextView>(R.id.val_2)
-        val klikPh = view!!.findViewById<ConstraintLayout>(R.id.klik_ph)
-
-        pH.text = "$nilai"
-
-        klikPh.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("PH")
-            tvSub.setText("Nilai pH tanah")
-            val asam = Range()
-            asam.color = Color.RED
-            asam.from = 1.0
-            asam.to = 5.4
-            gauge.addRange(asam)
-
-            val normal = Range()
-            normal.color = Color.GREEN
-            normal.from = 5.5
-            normal.to = 7.0
-            gauge.addRange(normal)
-
-            val basa = Range()
-            basa.color = Color.parseColor("#7f00ff")
-            basa.from = 8.0
-            basa.to = 14.0
-            gauge.addRange(basa)
-
-            gauge.minValue = 1.0
-            gauge.maxValue = 14.0
-            gauge.value = nilai
-
-            if (nilai < 5.5) {
-                notice.setText("Kandungan pH tanah ASAM!!")
-                notice.setTextColor(Color.RED)
+        binding.apply {
+            val2.text = "$nilai"
+            cd2.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai.toInt(), "PH", "Nilai pH tanah", "pH")
+                dialogFragment.show(childFragmentManager, "pH")
             }
-            else if (nilai > 7) {
-                notice.setText("Kandungan pH tanah BASA!!")
-                notice.setTextColor(Color.RED)
-            } else {
-                notice.setText("Kandungan pH tanah Normal")
-            }
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-            dialog.show()
         }
     }
 
     private fun eC(nilai: Int) {
-        val ec = view!!.findViewById<TextView>(R.id.val_3)
-        val klikEc = view!!.findViewById<ConstraintLayout>(R.id.klik_ec)
-
-        ec.text = "$nilai µS/cm"
-
-        klikEc.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("EC")
-            tvSub.setText("Nilai Ec tanah")
-            val value = Range()
-            value.color = ContextCompat.getColor(requireContext(), R.color.biru)
-            value.from = 0.0
-            value.to = 1000.0
-            gauge.addRange(value)
-
-            gauge.minValue = 0.0
-            gauge.maxValue = 1000.0
-            gauge.value = nilai.toDouble()
-
-            notice.isGone = true
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
+        binding.apply {
+            val3.text = "$nilai µS/cm"
+            cd3.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai, "EC", "Nilai Ec tanah", "")
+                dialogFragment.show(childFragmentManager, "EC")
             }
-            dialog.show()
         }
     }
 
     private fun nitro(nilai: Int) {
-        val nitro = view!!.findViewById<TextView>(R.id.val_4)
-        val klikNatrium = view!!.findViewById<ConstraintLayout>(R.id.klik_natrium)
-
-        nitro.text = "$nilai mg/Kg"
-
-        klikNatrium.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("Nitrogen")
-            tvSub.setText("Nilai Nitrogen dalam Tanah")
-            val value = Range()
-            value.color = ContextCompat.getColor(requireContext(), R.color.biru)
-            value.from = 0.0
-            value.to = 1000.0
-            gauge.addRange(value)
-
-            gauge.minValue = 0.0
-            gauge.maxValue = 1000.0
-            gauge.value = nilai.toDouble()
-
-            notice.isGone = true
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
+        binding.apply {
+            val4.text = "$nilai mg/Kg"
+            cd4.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai, "Nitrogen", "Nilai Nitrogen dalam Tanah", "")
+                dialogFragment.show(childFragmentManager, "Nitrogen")
             }
-            dialog.show()
         }
     }
 
     private fun fosfor(nilai: Int) {
-        val fosfor = view!!.findViewById<TextView>(R.id.val_5)
-        val klikFosfor = view!!.findViewById<ConstraintLayout>(R.id.klik_fosfor)
-
-        fosfor.text = "$nilai mg/Kg"
-
-        klikFosfor.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("Fosfor")
-            tvSub.setText("Nilai Fosfor dalam Tanah")
-            val value = Range()
-            value.color = ContextCompat.getColor(requireContext(), R.color.biru)
-            value.from = 0.0
-            value.to = 1000.0
-            gauge.addRange(value)
-
-            gauge.minValue = 0.0
-            gauge.maxValue = 1000.0
-            gauge.value = nilai.toDouble()
-
-            notice.isGone = true
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
+        binding.apply {
+            val5.text = "$nilai mg/Kg"
+            cd5.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai, "Fosfor", "Nilai Fosfor dalam Tanah", "")
+                dialogFragment.show(childFragmentManager, "Fosfor")
             }
-            dialog.show()
         }
     }
 
     private fun kalium(nilai: Int) {
-        val kalium = view!!.findViewById<TextView>(R.id.val_6)
-        val klikKalium = view!!.findViewById<ConstraintLayout>(R.id.klik_kalium)
-
-        kalium.text = "$nilai mg/Kg"
-
-        klikKalium.setOnClickListener {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_temp, null, false)
-
-            val tvTitle = view.findViewById<TextView>(R.id.tv_title)
-            val tvSub = view.findViewById<TextView>(R.id.tv_sub)
-            val gauge = view.findViewById<ArcGauge>(R.id.gauge)
-            val notice = view.findViewById<TextView>(R.id.tv_notice)
-            val close = view.findViewById<Button>(R.id.btn_close)
-
-            tvTitle.setText("Potassium")
-            tvSub.setText("Nilai Kalium dalam Tanah")
-            val value = Range()
-            value.color = ContextCompat.getColor(requireContext(), R.color.biru)
-            value.from = 0.0
-            value.to = 1000.0
-            gauge.addRange(value)
-
-            gauge.minValue = 0.0
-            gauge.maxValue = 1000.0
-            gauge.value = nilai.toDouble()
-
-            notice.isGone = true
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setView(view)
-            val dialog = builder.create()
-            close.setOnClickListener {
-                Toast.makeText(requireContext(), "Dialog ditutup!", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
+        binding.apply {
+            val6.text = "$nilai mg/Kg"
+            cd6.setOnClickListener {
+                val dialogFragment = ItemDialogFragment(nilai, "Potassium", "Nilai Kalium dalam Tanah", "")
+                dialogFragment.show(childFragmentManager, "Kalium")
             }
-            dialog.show()
         }
     }
 

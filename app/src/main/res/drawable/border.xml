@@ -3,11 +3,11 @@
     <item>
         <shape>
             <solid
-                android:color="@color/putih"/>
+                android:color="@color/cardview"/>
             <corners
                 android:radius="40dp"/>
             <stroke
-                android:color="@color/black"
+                android:color="@color/text_second"
                 android:width="3dp"/>
         </shape>
     </item>
