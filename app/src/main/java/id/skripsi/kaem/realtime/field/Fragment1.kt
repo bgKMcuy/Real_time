@@ -96,15 +96,14 @@ class Fragment1 : Fragment() {
                     it.message.let {
                         //Default nilai jika data gagal diambil dari server
                         val akt = 0
-                        val dist = -18
-                        val tinggi = 17 - (dist*-1)
-                        val mois = 100.0
-                        val suhu = 29.6
-                        val pH = 6.7
-                        val ec = 6650
-                        val nitro = 35
-                        val fosfor = 47
-                        val kal = 110
+                        val tinggi = 0
+                        val mois = 0.0
+                        val suhu = 0.0
+                        val pH = 0.0
+                        val ec = 0
+                        val nitro = 0
+                        val fosfor = 0
+                        val kal = 0
 
                         aktOut(akt)
                         dist(tinggi)
