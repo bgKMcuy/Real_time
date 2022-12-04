@@ -8,4 +8,5 @@
     <color name="cardview_third">#FFFFFF</color>
     <color name="text">#FFFFFF</color>
     <color name="text_second">#000000</color>
+    <color name="bar">#16264A</color>
 </resources>

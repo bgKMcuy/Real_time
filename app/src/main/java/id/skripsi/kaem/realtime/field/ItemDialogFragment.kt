@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.DialogFragment
 import com.ekn.gruzer.gaugelibrary.ArcGauge
@@ -14,10 +15,10 @@ import com.ekn.gruzer.gaugelibrary.Range
 import id.skripsi.kaem.realtime.R
 
 class ItemDialogFragment(
-    var nilai: Int,
+    var nilai: Double,
     val Title: String,
     val Sub: String,
-    val notif: String
+    val msg: String
 ) : DialogFragment() {
 
     override fun onCreateView(
@@ -45,42 +46,88 @@ class ItemDialogFragment(
         tvTitle.setText(Title)
         tvSub.setText(Sub)
         val normal = Range()
-        normal.color = Color.YELLOW
-        normal.from = 0.0
-        normal.to = 35.0
+        normal.color = ContextCompat.getColor(requireContext(), R.color.bar)
+        normal.from = gauge.minValue
+        normal.to = gauge.maxValue
         gauge.addRange(normal)
 
-        val panas = Range()
-        panas.color = Color.RED
-        panas.from = 36.0
-        panas.to = 100.0
-        gauge.addRange(panas)
+        if (msg == "Temp") {
+            gauge.minValue = -40.0
+            gauge.maxValue = 80.0
+            gauge.valueColor = ContextCompat.getColor(requireContext(), R.color.text_second)
+            gauge.value = nilai
 
-        gauge.minValue = 0.0
-        gauge.maxValue = 100.0
-        gauge.value = nilai.toDouble()
-
-        if (notif == "Temp") {
             if (nilai > 35) {
-                notice.setText("Suhu lingkungan terlalu Panas!")
+                notice.setText("Suhu lingkungan Panas!")
+                notice.setTextColor(Color.RED)
+            } else if (nilai < 10) {
+                notice.setText("Suhu lingkungan Dingin!")
                 notice.setTextColor(Color.RED)
             } else {
                 notice.setText("Suhu lingkungan Normal")
             }
         }
-        else if (notif == "pH") {
-            if (nilai < 5.5) {
-                notice.setText("Kandungan pH tanah ASAM!!")
+
+        else if (msg == "mois") {
+            gauge.minValue = 0.0
+            gauge.maxValue = 100.0
+            gauge.valueColor = ContextCompat.getColor(requireContext(), R.color.text_second)
+            gauge.value = nilai
+
+            if (nilai < 40) {
+                notice.setText("Tanah Kering !")
                 notice.setTextColor(Color.RED)
             }
-            else if (nilai > 7) {
-                notice.setText("Kandungan pH tanah BASA!!")
+            else if (nilai > 71) {
+                notice.setText("Tanah Basah !")
                 notice.setTextColor(Color.RED)
             } else {
-                notice.setText("Kandungan pH tanah Normal")
+                notice.setText("Tanah Lembab (Optimum)")
             }
         }
+
+        else if (msg == "pH") {
+            gauge.minValue = 0.0
+            gauge.maxValue = 14.0
+            gauge.valueColor = ContextCompat.getColor(requireContext(), R.color.text_second)
+            gauge.value = nilai
+
+            if (nilai < 5.5) {
+                notice.setText("ASAM !")
+                notice.setTextColor(Color.RED)
+            }
+            else if (nilai > 6.6) {
+                notice.setText("BASA !")
+                notice.setTextColor(Color.RED)
+            } else {
+                notice.setText("Optimum")
+            }
+        }
+
+        else if (msg == "EC") {
+            gauge.minValue = 0.0
+            gauge.maxValue = 10000.0
+            gauge.valueColor = ContextCompat.getColor(requireContext(), R.color.text_second)
+            gauge.value = nilai
+
+            if (nilai < 2000) {
+                notice.setText("Rendah")
+                notice.setTextColor(Color.RED)
+            }
+            else if (nilai > 3740) {
+                notice.setText("Terlalu Tinggi !")
+                notice.setTextColor(Color.RED)
+            } else {
+                notice.setText("Optimum")
+            }
+        }
+
         else {
+            gauge.minValue = 0.0
+            gauge.maxValue = 2000.0
+            gauge.valueColor = ContextCompat.getColor(requireContext(), R.color.text_second)
+            gauge.value = nilai
+
             notice.isGone = true
         }
 

@@ -165,7 +165,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             valRh.text = "$nilai %"
             cdRh.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toInt(), "Moisture", "Nilai Kelembaban Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai, "Moisture", "Tingkat Kelembaban Tanah", "mois")
                 dialogFragment.show(childFragmentManager, "Moisture")
             }
         }
@@ -175,7 +175,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val1.text = "$nilai ℃"
             cd1.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toInt(), "Temperatur", "Nilai suhu lingkungan", "Temp")
+                val dialogFragment = ItemDialogFragment(nilai, "Temperatur", "Tingkat Suhu Lingkungan", "Temp")
                 dialogFragment.show(childFragmentManager, "Temperature")
             }
         }
@@ -185,7 +185,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val2.text = "$nilai"
             cd2.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toInt(), "PH", "Nilai pH tanah", "pH")
+                val dialogFragment = ItemDialogFragment(nilai, "PH", "Tingkat pH Tanah", "pH")
                 dialogFragment.show(childFragmentManager, "pH")
             }
         }
@@ -195,7 +195,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val3.text = "$nilai µS/cm"
             cd3.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "EC", "Nilai Ec tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "EC", "Tingkat Salinitas Tanah", "EC")
                 dialogFragment.show(childFragmentManager, "EC")
             }
         }
@@ -205,7 +205,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val4.text = "$nilai mg/Kg"
             cd4.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Nitrogen", "Nilai Nitrogen dalam Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Nitrogen", "Tingkat Nitrogen Tanah", "")
                 dialogFragment.show(childFragmentManager, "Nitrogen")
             }
         }
@@ -215,7 +215,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val5.text = "$nilai mg/Kg"
             cd5.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Fosfor", "Nilai Fosfor dalam Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Fosfor", "Tingkat Fosfor Tanah", "")
                 dialogFragment.show(childFragmentManager, "Fosfor")
             }
         }
@@ -225,7 +225,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val6.text = "$nilai mg/Kg"
             cd6.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Potassium", "Nilai Kalium dalam Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Potassium", "Tingkat Kalium Tanah", "")
                 dialogFragment.show(childFragmentManager, "Kalium")
             }
         }

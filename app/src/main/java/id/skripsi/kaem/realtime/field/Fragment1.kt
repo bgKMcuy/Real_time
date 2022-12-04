@@ -96,14 +96,15 @@ class Fragment1 : Fragment() {
                     it.message.let {
                         //Default nilai jika data gagal diambil dari server
                         val akt = 0
-                        val tinggi = 0
-                        val mois = 0.0
-                        val suhu = 0.0
-                        val pH = 0.0
-                        val ec = 0
-                        val nitro = 0
-                        val fosfor = 0
-                        val kal = 0
+                        val dist = -18
+                        val tinggi = 17 - (dist*-1)
+                        val mois = 100.0
+                        val suhu = 29.6
+                        val pH = 6.7
+                        val ec = 6650
+                        val nitro = 35
+                        val fosfor = 47
+                        val kal = 110
 
                         aktOut(akt)
                         dist(tinggi)
@@ -165,7 +166,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             valRh.text = "$nilai %"
             cdRh.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toInt(), "Moisture", "Nilai Kelembaban Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai, "Moisture", "Tingkat Kelembaban Tanah", "mois")
                 dialogFragment.show(childFragmentManager, "Moisture")
             }
         }
@@ -175,7 +176,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             val1.text = "$nilai ℃"
             cd1.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toInt(), "Temperatur", "Nilai suhu lingkungan", "Temp")
+                val dialogFragment = ItemDialogFragment(nilai, "Temperatur", "Tingkat Suhu Lingkungan", "Temp")
                 dialogFragment.show(childFragmentManager, "Temperature")
             }
         }
@@ -185,7 +186,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             val2.text = "$nilai"
             cd2.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toInt(), "PH", "Nilai pH tanah", "pH")
+                val dialogFragment = ItemDialogFragment(nilai, "PH", "Tingkat pH Tanah", "pH")
                 dialogFragment.show(childFragmentManager, "pH")
             }
         }
@@ -195,7 +196,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             val3.text = "$nilai µS/cm"
             cd3.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "EC", "Nilai Ec tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "EC", "Tingkat Salinitas Tanah", "EC")
                 dialogFragment.show(childFragmentManager, "EC")
             }
         }
@@ -205,7 +206,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             val4.text = "$nilai mg/Kg"
             cd4.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Nitrogen", "Nilai Nitrogen dalam Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Nitrogen", "Tingkat Nitrogen Tanah", "")
                 dialogFragment.show(childFragmentManager, "Nitrogen")
             }
         }
@@ -215,7 +216,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             val5.text = "$nilai mg/Kg"
             cd5.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Fosfor", "Nilai Fosfor dalam Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Fosfor", "Tingkat Fosfor Tanah", "")
                 dialogFragment.show(childFragmentManager, "Fosfor")
             }
         }
@@ -225,7 +226,7 @@ class Fragment1 : Fragment() {
         binding.apply {
             val6.text = "$nilai mg/Kg"
             cd6.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Potassium", "Nilai Kalium dalam Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Potassium", "Tingkat Kalium Tanah", "")
                 dialogFragment.show(childFragmentManager, "Kalium")
             }
         }
