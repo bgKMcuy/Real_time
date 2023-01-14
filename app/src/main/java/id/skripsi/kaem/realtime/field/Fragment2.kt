@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -25,8 +26,6 @@ import id.skripsi.kaem.realtime.R
 import id.skripsi.kaem.realtime.databinding.Fragment2Binding
 import id.skripsi.kaem.realtime.model.Status
 import id.skripsi.kaem.realtime.viewmodel.SensorViewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
 class Fragment2 : Fragment() {
@@ -161,7 +160,7 @@ class Fragment2 : Fragment() {
             else -> {
                 tvMsgDist.setText("Air Pasang")
                 if (mapInt["dist"]!! <= 2){
-                    showNotif("Air Pasang! Tutup Aktuator Field 1.")
+                    showNotif(1,"Air Pasang! Tutup Aktuator Field 1.", "1", "Distance", "Notif Ketingian Air")
                 }
             }
         }
@@ -197,12 +196,12 @@ class Fragment2 : Fragment() {
         when (nilai) {
             in 0.0..40.0 -> {
                 if (mapDou["mois"]!! >= 40){
-                    showNotif("Tanah Kering.")
+                    showNotif(2,"Tanah Kering.", "2", "Moisture", "Notif Kelembapan Tanah")
                 }
             }
             in 76.0..100.0 -> {
                 if (mapDou["mois"]!! <= 75){
-                    showNotif("Tanah Basah.")
+                    showNotif(2,"Tanah Basah.", "2", "Moisture", "Notif Kelembapan Tanah")
                 }
             }
             else -> {}
@@ -233,12 +232,12 @@ class Fragment2 : Fragment() {
         when (nilai){
             in 3.0..5.4 -> {
                 if (mapDou["pH"]!! >= 5.4) {
-                    showNotif("pH Rendah.")
+                    showNotif(3,"pH Rendah.", "3", "pH", "Notif pH Tanah")
                 }
             }
             in 6.6..9.0 -> {
                 if (mapDou["pH"]!! <= 6.6) {
-                    showNotif("pH Tinggi.")
+                    showNotif(3,"pH Tinggi.", "3", "pH", "Notif pH Tanah")
                 }
             }
             else -> {}
@@ -260,7 +259,7 @@ class Fragment2 : Fragment() {
             in 0..3740 -> {}
             else -> {
                 if (mapInt["ec"]!! <= 3740){
-                    showNotif("EC Tinggi.")
+                    showNotif(4,"EC Tinggi.", "4", "EC", "Notif DHL Tanah")
                 }
             }
         }
@@ -310,19 +309,19 @@ class Fragment2 : Fragment() {
         }
     }
 
-    private fun showNotif(msg: String) {
-        createNotifChannel()
+    private fun showNotif(idNotif: Int,msg: String, CHANNEL_ID: String, CHANNEL_NAME: String, deskripsi: String) {
+        createNotifChannel(CHANNEL_ID, CHANNEL_NAME, deskripsi)
 
-        val date = Date()
-        val notifId = SimpleDateFormat("ddHHmmss", Locale.US).format(date).toInt()
+//        val date = Date()
+//        val notifId = SimpleDateFormat("ddHHmmss", Locale.US).format(date).toInt()
+        val notifId = idNotif
 
         val intent = Intent(requireContext(), MainActivity::class.java)
         //if you want to pass data in notif and get in required activity
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val pedIntent = NavDeepLinkBuilder(requireContext())
             .setGraph(R.navigation.nav_graph)
-            .setDestination(R.id.fragment2)
-//            .setArguments(bundleOf())
+            .setDestination(R.id.fragment1)
             .createPendingIntent()
 
         //create notif builder
@@ -330,28 +329,27 @@ class Fragment2 : Fragment() {
             .setSmallIcon(R.mipmap.ic_ipb)
             .setContentTitle("Peringatan!")
             .setContentText(msg)
+            .setShowWhen(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .setAutoCancel(true)
             .setContentIntent(pedIntent)
+            .build()
 
         //create notif manager
-        val notifManagerCompat = NotificationManagerCompat.from(requireContext())
-        notifManagerCompat.notify(notifId, builder.build())
+        val notifManager = NotificationManagerCompat.from(requireContext())
+        notifManager.notify(notifId, builder)
     }
 
-    private fun createNotifChannel() {
+    private fun createNotifChannel(CHANNEL_ID: String, CHANNEL_NAME: String, deskripsi: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val notificationChannel = NotificationChannel("fragment 2", "Notif Fragment 2", importance)
-            notificationChannel.description = "Ini Notif Fragment 2"
+            val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = deskripsi
+                lightColor = Color.BLUE
+                enableLights(true)
+            }
 
-            val notifManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notifManager.createNotificationChannel(notificationChannel)
+            val manager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(notificationChannel)
         }
-    }
-
-    companion object {
-        private const val CHANNEL_ID = "channel2"
     }
 }
