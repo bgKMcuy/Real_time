@@ -1,5 +1,10 @@
 package id.skripsi.kaem.realtime.field
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -7,15 +12,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import id.skripsi.kaem.realtime.MainActivity
 import id.skripsi.kaem.realtime.R
 import id.skripsi.kaem.realtime.databinding.Fragment1Binding
 import id.skripsi.kaem.realtime.model.Status
 import id.skripsi.kaem.realtime.viewmodel.SensorViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class Fragment1 : Fragment() {
@@ -26,6 +37,16 @@ class Fragment1 : Fragment() {
 
     private lateinit var timer: CountDownTimer
     var time_in_millis = 0L
+
+    var mapInt = mutableMapOf(
+        "dist" to 0,
+        "ec" to 0,
+    )
+
+    var mapDou = mutableMapOf(
+        "mois" to 0.0,
+        "pH" to 0.0,
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +92,7 @@ class Fragment1 : Fragment() {
                 Status.SUCCESS -> {
                     val akt = it.data!!.output.toInt()
                     val dist = it.data.distance.toInt()
-                    val tinggi = 17 - (dist*-1)
+                    val tinggi = 22 - (dist*-1)
                     val mois = it.data.moisture.toInt().toDouble()
                     val suhu = it.data.suhu.toInt().toDouble()
                     val pH = it.data.pH.toInt().toDouble()
@@ -94,30 +115,30 @@ class Fragment1 : Fragment() {
                 }
                 Status.ERROR -> {
                     it.message.let {
-                        //Default nilai jika data gagal diambil dari server
-                        val akt = 0
-                        val tinggi = 0
-                        val mois = 0.0
-                        val suhu = 0.0
-                        val pH = 0.0
-                        val ec = 0
-                        val nitro = 0
-                        val fosfor = 0
-                        val kal = 0
-
-                        aktOut(akt)
-                        dist(tinggi)
-                        mois(mois)
-                        temp(suhu)
-                        pH(pH)
-                        eC(ec)
-                        nitro(nitro)
-                        fosfor(fosfor)
-                        kalium(kal)
+                        // Default nilai jika data gagal diambil dari server
+//                        val akt = 0
+//                        val tinggi = 4
+//                        val mois = 0.0
+//                        val suhu = 0.0
+//                        val pH = 0.0
+//                        val ec = 0
+//                        val nitro = 0
+//                        val fosfor = 0
+//                        val kal = 0
+//
+//                        aktOut(akt)
+//                        dist(tinggi)
+//                        mois(mois)
+//                        temp(suhu)
+//                        pH(pH)
+//                        eC(ec)
+//                        nitro(nitro)
+//                        fosfor(fosfor)
+//                        kalium(kal)
 
                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                     }
-                    timer.cancel()
+                    timer.start()
                 }
                 else -> {}
             }
@@ -139,9 +160,13 @@ class Fragment1 : Fragment() {
             }
             else -> {
                 tvMsgDist.setText("Air Pasang")
-//                showNotif()
+                if (mapInt["dist"]!! <= 2){
+                    showNotif("Air Pasang! Tutup Aktuator Field 1.")
+                }
             }
         }
+
+        mapInt.put("dist", nilai)
     }
 
     private fun aktOut(nilai: Int) {
@@ -156,7 +181,6 @@ class Fragment1 : Fragment() {
             }
             else -> {
                 out.setText("Terbuka penuh")
-//                showNotif()
             }
         }
     }
@@ -169,6 +193,22 @@ class Fragment1 : Fragment() {
                 dialogFragment.show(childFragmentManager, "Moisture")
             }
         }
+
+        when (nilai) {
+            in 0.0..40.0 -> {
+                if (mapDou["mois"]!! >= 40){
+                    showNotif("Tanah Kering.")
+                }
+            }
+            in 76.0..100.0 -> {
+                if (mapDou["mois"]!! <= 75){
+                    showNotif("Tanah Basah.")
+                }
+            }
+            else -> {}
+        }
+
+        mapDou.put("mois", nilai)
     }
 
     private fun temp(nilai: Double) {
@@ -189,6 +229,22 @@ class Fragment1 : Fragment() {
                 dialogFragment.show(childFragmentManager, "pH")
             }
         }
+
+        when (nilai){
+            in 3.0..5.4 -> {
+                if (mapDou["pH"]!! >= 5.4) {
+                    showNotif("pH Rendah.")
+                }
+            }
+            in 6.6..9.0 -> {
+                if (mapDou["pH"]!! <= 6.6) {
+                    showNotif("pH Tinggi.")
+                }
+            }
+            else -> {}
+        }
+
+        mapDou.put("pH", nilai)
     }
 
     private fun eC(nilai: Int) {
@@ -199,6 +255,17 @@ class Fragment1 : Fragment() {
                 dialogFragment.show(childFragmentManager, "EC")
             }
         }
+
+        when (nilai) {
+            in 0..3740 -> {}
+            else -> {
+                if (mapInt["ec"]!! <= 3740){
+                    showNotif("EC Tinggi.")
+                }
+            }
+        }
+
+        mapInt.put("ec", nilai)
     }
 
     private fun nitro(nilai: Int) {
@@ -243,51 +310,48 @@ class Fragment1 : Fragment() {
         }
     }
 
-//    private fun showNotif() {
-//        createNotifChannel()
-//
-//        val date = Date()
-//        val notifId = SimpleDateFormat("ddHHmmss", Locale.US).format(date).toInt()
-//
-//        val intent = Intent(requireContext(), MainActivity::class.java)
-//        //if you want to pass data in notif and get in required activity
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        val pedIntent = NavDeepLinkBuilder(requireContext())
-//            .setGraph(R.navigation.nav_graph)
-//            .setDestination(R.id.fragment1)
-////            .setArguments(bundleOf())
-//            .createPendingIntent()
-//
-//        //create notif builder
-//        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-//        builder.setSmallIcon(R.mipmap.ic_ipb)
-//        builder.setContentTitle("Peringatan!!!")
-//        builder.setContentText("Air Pasang, Silahkan tutup Pintu Aktuator Field 1.")
-//        builder.priority = NotificationCompat.PRIORITY_DEFAULT
-//        //cancel notif on click
-//        builder.setAutoCancel(true)
-//        //add click intent
-//        builder.setContentIntent(pedIntent)
-//
-//        //create notif manager
-//        val notifManagerCompat = NotificationManagerCompat.from(requireContext())
-//        notifManagerCompat.notify(notifId, builder.build())
-//    }
+    private fun showNotif(msg: String) {
+        createNotifChannel()
 
-//    private fun createNotifChannel() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            val name = "Notif Fragment 1"
-//            val description = "Ini Notif Fragment 1"
-//            val importance = NotificationManager.IMPORTANCE_DEFAULT
-//            val notificationChannel = NotificationChannel(CHANNEL_ID, name, importance)
-//            notificationChannel.description = description
-//
-//            val notifManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//            notifManager.createNotificationChannel(notificationChannel)
-//        }
-//    }
+        val date = Date()
+        val notifId = SimpleDateFormat("ddHHmmss", Locale.US).format(date).toInt()
 
-//    companion object {
-//        private const val CHANNEL_ID = "channel1"
-//    }
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        //if you want to pass data in notif and get in required activity
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pedIntent = NavDeepLinkBuilder(requireContext())
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.fragment1)
+//            .setArguments(bundleOf())
+            .createPendingIntent()
+
+        //create notif builder
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.mipmap.ic_ipb)
+            .setContentTitle("Peringatan!")
+            .setContentText(msg)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .setAutoCancel(true)
+            .setContentIntent(pedIntent)
+
+        //create notif manager
+        val notifManagerCompat = NotificationManagerCompat.from(requireContext())
+        notifManagerCompat.notify(notifId, builder.build())
+    }
+
+    private fun createNotifChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel("fragment 1", "Notif Fragment 1", importance)
+            notificationChannel.description = "Ini Notif Fragment 1"
+
+            val notifManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notifManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
+    companion object {
+        private const val CHANNEL_ID = "channel1"
+    }
 }

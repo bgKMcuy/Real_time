@@ -78,7 +78,7 @@ class ItemDialogFragment(
                 notice.setText("Tanah Kering !")
                 notice.setTextColor(Color.RED)
             }
-            else if (nilai > 71) {
+            else if (nilai > 75) {
                 notice.setText("Tanah Basah !")
                 notice.setTextColor(Color.RED)
             } else {
@@ -99,6 +99,11 @@ class ItemDialogFragment(
             else if (nilai > 6.6) {
                 notice.setText("BASA !")
                 notice.setTextColor(Color.RED)
+//                if (nilai == Fragment1.listPrevData[0]){
+//                    Fragment1.listPrevData[0] = nilai
+//                } else {
+//
+//                }
             } else {
                 notice.setText("Optimum")
             }
