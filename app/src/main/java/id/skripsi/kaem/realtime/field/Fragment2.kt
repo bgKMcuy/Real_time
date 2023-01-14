@@ -160,7 +160,7 @@ class Fragment2 : Fragment() {
             else -> {
                 tvMsgDist.setText("Air Pasang")
                 if (mapInt["dist"]!! <= 2){
-                    showNotif(1,"Air Pasang! Tutup Aktuator Field 1.", "1", "Distance", "Notif Ketingian Air")
+                    showNotif(5,"Air Pasang!", "5", "Distance 2", "Notif Ketingian Air")
                 }
             }
         }
@@ -196,12 +196,12 @@ class Fragment2 : Fragment() {
         when (nilai) {
             in 0.0..40.0 -> {
                 if (mapDou["mois"]!! >= 40){
-                    showNotif(2,"Tanah Kering.", "2", "Moisture", "Notif Kelembapan Tanah")
+                    showNotif(6,"Tanah Kering.", "6", "Moisture 2", "Notif Kelembapan Tanah")
                 }
             }
             in 76.0..100.0 -> {
                 if (mapDou["mois"]!! <= 75){
-                    showNotif(2,"Tanah Basah.", "2", "Moisture", "Notif Kelembapan Tanah")
+                    showNotif(6,"Tanah Basah.", "6", "Moisture 2", "Notif Kelembapan Tanah")
                 }
             }
             else -> {}
@@ -232,12 +232,12 @@ class Fragment2 : Fragment() {
         when (nilai){
             in 3.0..5.4 -> {
                 if (mapDou["pH"]!! >= 5.4) {
-                    showNotif(3,"pH Rendah.", "3", "pH", "Notif pH Tanah")
+                    showNotif(7,"pH Rendah.", "7", "pH 2", "Notif pH Tanah")
                 }
             }
             in 6.6..9.0 -> {
                 if (mapDou["pH"]!! <= 6.6) {
-                    showNotif(3,"pH Tinggi.", "3", "pH", "Notif pH Tanah")
+                    showNotif(7,"pH Tinggi.", "7", "pH 2", "Notif pH Tanah")
                 }
             }
             else -> {}
@@ -259,7 +259,7 @@ class Fragment2 : Fragment() {
             in 0..3740 -> {}
             else -> {
                 if (mapInt["ec"]!! <= 3740){
-                    showNotif(4,"EC Tinggi.", "4", "EC", "Notif DHL Tanah")
+                    showNotif(8,"EC Tinggi.", "8", "EC 2", "Notif DHL Tanah")
                 }
             }
         }
@@ -327,8 +327,9 @@ class Fragment2 : Fragment() {
         //create notif builder
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_ipb)
-            .setContentTitle("Peringatan!")
+            .setContentTitle("Peringatan! Field 2")
             .setContentText(msg)
+            .setWhen(System.currentTimeMillis())
             .setShowWhen(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
