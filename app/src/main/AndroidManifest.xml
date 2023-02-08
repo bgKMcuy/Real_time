@@ -4,7 +4,6 @@
     package="id.skripsi.kaem.realtime" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
 
     <application
         android:name=".RealTimeApp"

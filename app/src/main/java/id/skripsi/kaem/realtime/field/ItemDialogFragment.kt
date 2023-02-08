@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import com.ekn.gruzer.gaugelibrary.ArcGauge
 import com.ekn.gruzer.gaugelibrary.Range
 import id.skripsi.kaem.realtime.R
+import id.skripsi.kaem.realtime.model.Status
 
 class ItemDialogFragment(
     var nilai: Double,
@@ -61,8 +62,12 @@ class ItemDialogFragment(
                 notice.setText("Suhu lingkungan Panas!")
                 notice.setTextColor(Color.RED)
             } else if (nilai < 10) {
-                notice.setText("Suhu lingkungan Dingin!")
-                notice.setTextColor(Color.RED)
+                if (nilai == Status.SUCCESS.name.length.toDouble()){
+                    notice.setText("Suhu lingkungan Dingin!")
+                    notice.setTextColor(Color.RED)
+                } else {
+                    notice.setText("-")
+                }
             } else {
                 notice.setText("Suhu lingkungan Normal")
             }
@@ -99,11 +104,6 @@ class ItemDialogFragment(
             else if (nilai > 6.6) {
                 notice.setText("BASA !")
                 notice.setTextColor(Color.RED)
-//                if (nilai == Fragment1.listPrevData[0]){
-//                    Fragment1.listPrevData[0] = nilai
-//                } else {
-//
-//                }
             } else {
                 notice.setText("Optimum")
             }

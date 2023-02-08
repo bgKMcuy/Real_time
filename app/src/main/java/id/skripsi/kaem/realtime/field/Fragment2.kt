@@ -115,25 +115,25 @@ class Fragment2 : Fragment() {
                 Status.ERROR -> {
                     it.message.let {
                         // Default nilai jika data gagal diambil dari server
-//                        val akt = 0
-//                        val tinggi = 4
-//                        val mois = 0.0
-//                        val suhu = 0.0
-//                        val pH = 0.0
-//                        val ec = 0
-//                        val nitro = 0
-//                        val fosfor = 0
-//                        val kal = 0
-//
-//                        aktOut(akt)
-//                        dist(tinggi)
-//                        mois(mois)
-//                        temp(suhu)
-//                        pH(pH)
-//                        eC(ec)
-//                        nitro(nitro)
-//                        fosfor(fosfor)
-//                        kalium(kal)
+                        val akt = 0
+                        val tinggi = 0
+                        val mois = 0.0
+                        val suhu = 0.0
+                        val pH = 0.0
+                        val ec = 0
+                        val nitro = 0
+                        val fosfor = 0
+                        val kal = 0
+
+                        aktOut(akt)
+                        dist(tinggi)
+                        mois(mois)
+                        temp(suhu)
+                        pH(pH)
+                        eC(ec)
+                        nitro(nitro)
+                        fosfor(fosfor)
+                        kalium(kal)
 
                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                     }

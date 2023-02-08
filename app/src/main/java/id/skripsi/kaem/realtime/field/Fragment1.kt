@@ -91,7 +91,7 @@ class Fragment1 : Fragment() {
                 Status.SUCCESS -> {
                     val akt = it.data!!.output.toInt()
                     val dist = it.data.distance.toInt()
-                    val tinggi = 22 - (dist*-1)
+                    val tinggi = 17 - (dist*-1)
                     val mois = it.data.moisture.toInt().toDouble()
                     val suhu = it.data.suhu.toInt().toDouble()
                     val pH = it.data.pH.toInt().toDouble()
@@ -115,25 +115,25 @@ class Fragment1 : Fragment() {
                 Status.ERROR -> {
                     it.message.let {
                         // Default nilai jika data gagal diambil dari server
-//                        val akt = 0
-//                        val tinggi = 4
-//                        val mois = 0.0
-//                        val suhu = 0.0
-//                        val pH = 0.0
-//                        val ec = 0
-//                        val nitro = 0
-//                        val fosfor = 0
-//                        val kal = 0
-//
-//                        aktOut(akt)
-//                        dist(tinggi)
-//                        mois(mois)
-//                        temp(suhu)
-//                        pH(pH)
-//                        eC(ec)
-//                        nitro(nitro)
-//                        fosfor(fosfor)
-//                        kalium(kal)
+                        val akt = 0
+                        val tinggi = 0
+                        val mois = 0.0
+                        val suhu = 0.0
+                        val pH = 0.0
+                        val ec = 0
+                        val nitro = 0
+                        val fosfor = 0
+                        val kal = 0
+
+                        aktOut(akt)
+                        dist(tinggi)
+                        mois(mois)
+                        temp(suhu)
+                        pH(pH)
+                        eC(ec)
+                        nitro(nitro)
+                        fosfor(fosfor)
+                        kalium(kal)
 
                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                     }
@@ -160,7 +160,7 @@ class Fragment1 : Fragment() {
             else -> {
                 tvMsgDist.setText("Air Pasang")
                 if (mapInt["dist"]!! <= 2){
-                    showNotif(1,"Air Pasang!", "1", "Distance 1", "Notif Ketingian Air")
+                    showNotif(1,"Air Pasang!", "1", "Distance 1", "Notif Ketinggian Air")
                 }
             }
         }
@@ -311,11 +311,9 @@ class Fragment1 : Fragment() {
 
     private fun showNotif(idNotif: Int,msg: String, CHANNEL_ID: String, CHANNEL_NAME: String, deskripsi: String) {
         createNotifChannel(CHANNEL_ID, CHANNEL_NAME, deskripsi)
-
-//        val date = Date()
-//        val notifId = SimpleDateFormat("ddHHmmss", Locale.US).format(date).toInt()
         val notifId = idNotif
 
+        //set tap action notification
         val intent = Intent(requireContext(), MainActivity::class.java)
         //if you want to pass data in notif and get in required activity
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -324,22 +322,24 @@ class Fragment1 : Fragment() {
             .setDestination(R.id.fragment1)
             .createPendingIntent()
 
-        //create notif builder
+        //set content notification
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_ipb)
             .setContentTitle("Peringatan! Field 1")
             .setContentText(msg)
             .setShowWhen(true)
+            .setOnlyAlertOnce(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pedIntent)
             .build()
 
-        //create notif manager
+        //show notif
         val notifManager = NotificationManagerCompat.from(requireContext())
         notifManager.notify(notifId, builder)
     }
 
+    //create notif channel for API level 26+
     private fun createNotifChannel(CHANNEL_ID: String, CHANNEL_NAME: String, deskripsi: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT).apply {
@@ -348,6 +348,7 @@ class Fragment1 : Fragment() {
                 enableLights(true)
             }
 
+            //register channel with system
             val manager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(notificationChannel)
         }
