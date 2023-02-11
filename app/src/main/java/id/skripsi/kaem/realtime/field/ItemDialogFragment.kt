@@ -13,10 +13,10 @@ import androidx.fragment.app.DialogFragment
 import com.ekn.gruzer.gaugelibrary.ArcGauge
 import com.ekn.gruzer.gaugelibrary.Range
 import id.skripsi.kaem.realtime.R
-import id.skripsi.kaem.realtime.model.Status
 
 class ItemDialogFragment(
     var nilai: Double,
+    val data: String,
     val Title: String,
     val Sub: String,
     val msg: String
@@ -62,10 +62,10 @@ class ItemDialogFragment(
                 notice.setText("Suhu lingkungan Panas!")
                 notice.setTextColor(Color.RED)
             } else if (nilai < 10) {
-                if (nilai == Status.SUCCESS.name.length.toDouble()){
+                if (data == "SUCCESS"){
                     notice.setText("Suhu lingkungan Dingin!")
                     notice.setTextColor(Color.RED)
-                } else {
+                } else if (data == "ERROR"){
                     notice.setText("-")
                 }
             } else {
@@ -80,8 +80,12 @@ class ItemDialogFragment(
             gauge.value = nilai
 
             if (nilai < 40) {
-                notice.setText("Tanah Kering !")
-                notice.setTextColor(Color.RED)
+                if (data == "SUCCESS"){
+                    notice.setText("Tanah Kering !")
+                    notice.setTextColor(Color.RED)
+                } else if (data == "ERROR") {
+                    notice.setText("-")
+                }
             }
             else if (nilai > 75) {
                 notice.setText("Tanah Basah !")
@@ -98,8 +102,12 @@ class ItemDialogFragment(
             gauge.value = nilai
 
             if (nilai < 5.5) {
-                notice.setText("ASAM !")
-                notice.setTextColor(Color.RED)
+                if (data == "SUCCESS"){
+                    notice.setText("ASAM !")
+                    notice.setTextColor(Color.RED)
+                } else if (data == "ERROR") {
+                    notice.setText("-")
+                }
             }
             else if (nilai > 6.6) {
                 notice.setText("BASA !")
@@ -116,8 +124,12 @@ class ItemDialogFragment(
             gauge.value = nilai
 
             if (nilai < 2000) {
-                notice.setText("Rendah")
-                notice.setTextColor(Color.RED)
+                if (data == "SUCCESS"){
+                    notice.setText("Rendah")
+                    notice.setTextColor(Color.RED)
+                } else if (data == "ERROR") {
+                    notice.setText("-")
+                }
             }
             else if (nilai > 3740) {
                 notice.setText("Terlalu Tinggi !")

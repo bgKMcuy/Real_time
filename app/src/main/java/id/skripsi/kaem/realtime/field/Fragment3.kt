@@ -47,6 +47,8 @@ class Fragment3 : Fragment() {
         "pH" to 0.0,
     )
 
+    var dataEntry = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -99,13 +101,14 @@ class Fragment3 : Fragment() {
                     val nitro = it.data.nitrogen
                     val fosfor = it.data.phospor
                     val kal = it.data.kalium
+                    dataEntry = "SUCCESS"
 
-                    aktOut(akt)
-                    dist(tinggi)
-                    mois(mois)
-                    temp(suhu)
-                    pH(pH)
-                    eC(ec)
+                    aktOut(akt, dataEntry)
+                    dist(tinggi, dataEntry)
+                    mois(mois, dataEntry)
+                    temp(suhu, dataEntry)
+                    pH(pH, dataEntry)
+                    eC(ec, dataEntry)
                     nitro(nitro)
                     fosfor(fosfor)
                     kalium(kal)
@@ -124,13 +127,14 @@ class Fragment3 : Fragment() {
                         val nitro = 0
                         val fosfor = 0
                         val kal = 0
+                        dataEntry = "ERROR"
 
-                        aktOut(akt)
-                        dist(tinggi)
-                        mois(mois)
-                        temp(suhu)
-                        pH(pH)
-                        eC(ec)
+                        aktOut(akt, dataEntry)
+                        dist(tinggi, dataEntry)
+                        mois(mois, dataEntry)
+                        temp(suhu, dataEntry)
+                        pH(pH, dataEntry)
+                        eC(ec, dataEntry)
                         nitro(nitro)
                         fosfor(fosfor)
                         kalium(kal)
@@ -144,7 +148,7 @@ class Fragment3 : Fragment() {
         }
     }
 
-    private fun dist(nilai: Int) {
+    private fun dist(nilai: Int, data: String) {
         val dist = view!!.findViewById<TextView>(R.id.val_dist)
         val tvMsgDist = view!!.findViewById<TextView>(R.id.tv_msg_dist)
 
@@ -152,7 +156,12 @@ class Fragment3 : Fragment() {
 
         when (nilai) {
             0 -> {
-                tvMsgDist.setText("Air Kering")
+                if (data == "SUCCESS") {
+                    tvMsgDist.setText("Air Kering")
+                }
+                else if (data == "ERROR") {
+                    tvMsgDist.setText("-")
+                }
             }
             in 1..2 -> {
                 tvMsgDist.setText("Normal")
@@ -168,12 +177,17 @@ class Fragment3 : Fragment() {
         mapInt.put("dist", nilai)
     }
 
-    private fun aktOut(nilai: Int) {
+    private fun aktOut(nilai: Int, data: String) {
         val out = view!!.findViewById<TextView>(R.id.status_akt)
 
         when (nilai) {
             in 0..35 -> {
-                out.setText("Tertutup")
+                if (data == "SUCCESS") {
+                    out.setText("Tertutup")
+                }
+                else if (data == "ERROR") {
+                    out.setText("-")
+                }
             }
             in 36..75 -> {
                 out.setText("Terbuka sebagian")
@@ -184,11 +198,11 @@ class Fragment3 : Fragment() {
         }
     }
 
-    private fun mois(nilai: Double) {
+    private fun mois(nilai: Double, data: String) {
         binding.apply {
             valRh.text = "$nilai %"
             cdRh.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Moisture", "Tingkat Kelembaban Tanah", "mois")
+                val dialogFragment = ItemDialogFragment(nilai, data,"Moisture", "Tingkat Kelembaban Tanah", "mois")
                 dialogFragment.show(childFragmentManager, "Moisture")
             }
         }
@@ -210,21 +224,21 @@ class Fragment3 : Fragment() {
         mapDou.put("mois", nilai)
     }
 
-    private fun temp(nilai: Double) {
+    private fun temp(nilai: Double, data: String) {
         binding.apply {
             val1.text = "$nilai ℃"
             cd1.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "Temperatur", "Tingkat Suhu Lingkungan", "Temp")
+                val dialogFragment = ItemDialogFragment(nilai, data,"Temperatur", "Tingkat Suhu Lingkungan", "Temp")
                 dialogFragment.show(childFragmentManager, "Temperature")
             }
         }
     }
 
-    private fun pH(nilai: Double) {
+    private fun pH(nilai: Double, data: String) {
         binding.apply {
             val2.text = "$nilai"
             cd2.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai, "PH", "Tingkat pH Tanah", "pH")
+                val dialogFragment = ItemDialogFragment(nilai, data,"PH", "Tingkat pH Tanah", "pH")
                 dialogFragment.show(childFragmentManager, "pH")
             }
         }
@@ -246,11 +260,11 @@ class Fragment3 : Fragment() {
         mapDou.put("pH", nilai)
     }
 
-    private fun eC(nilai: Int) {
+    private fun eC(nilai: Int, data: String) {
         binding.apply {
             val3.text = "$nilai µS/cm"
             cd3.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "EC", "Tingkat Salinitas Tanah", "EC")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), data,"EC", "Tingkat Salinitas Tanah", "EC")
                 dialogFragment.show(childFragmentManager, "EC")
             }
         }
@@ -271,7 +285,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val4.text = "$nilai mg/Kg"
             cd4.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Nitrogen", "Tingkat Nitrogen Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "","Nitrogen", "Tingkat Nitrogen Tanah", "")
                 dialogFragment.show(childFragmentManager, "Nitrogen")
             }
         }
@@ -281,7 +295,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val5.text = "$nilai mg/Kg"
             cd5.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Fosfor", "Tingkat Fosfor Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "","Fosfor", "Tingkat Fosfor Tanah", "")
                 dialogFragment.show(childFragmentManager, "Fosfor")
             }
         }
@@ -291,7 +305,7 @@ class Fragment3 : Fragment() {
         binding.apply {
             val6.text = "$nilai mg/Kg"
             cd6.setOnClickListener {
-                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "Potassium", "Tingkat Kalium Tanah", "")
+                val dialogFragment = ItemDialogFragment(nilai.toDouble(), "","Potassium", "Tingkat Kalium Tanah", "")
                 dialogFragment.show(childFragmentManager, "Kalium")
             }
         }
